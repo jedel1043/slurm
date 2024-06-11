@@ -339,6 +339,10 @@ static void _init_minimal_conf_server_config(List controllers)
 	if (slurm_conf.authinfo)
 		xstrfmtcat(conf, "AuthInfo=%s\n", slurm_conf.authinfo);
 
+	/* Use for the --plugindir option in slurmd */
+	if (slurm_conf.plugindir)
+		xstrfmtcat(conf, "PluginDir=%s\n", slurm_conf.plugindir);
+
 	if ((fd = dump_to_memfd("slurm.conf", conf, &filename)) < 0)
 		fatal("%s: could not write temporary config", __func__);
 	xfree(conf);

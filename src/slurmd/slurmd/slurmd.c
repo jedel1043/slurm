@@ -1644,6 +1644,7 @@ _process_cmdline(int ac, char **av)
 		LONG_OPT_EXTRA,
 		LONG_OPT_INSTANCE_ID,
 		LONG_OPT_INSTANCE_TYPE,
+		LONG_OPT_PLUGINDIR,
 		LONG_OPT_SYSTEMD,
 	};
 
@@ -1654,6 +1655,7 @@ _process_cmdline(int ac, char **av)
 		{"extra",		required_argument, 0, LONG_OPT_EXTRA},
 		{"instance-id",		required_argument, 0, LONG_OPT_INSTANCE_ID},
 		{"instance-type",	required_argument, 0, LONG_OPT_INSTANCE_TYPE},
+		{"plugindir",	required_argument, 0, LONG_OPT_PLUGINDIR},
 		{"systemd",		no_argument,       0, LONG_OPT_SYSTEMD},
 		{"version",		no_argument,       0, 'V'},
 		{NULL,			0,                 0, 0}
@@ -1759,6 +1761,9 @@ _process_cmdline(int ac, char **av)
 			break;
 		case LONG_OPT_INSTANCE_TYPE:
 			conf->instance_type = xstrdup(optarg);
+			break;
+		case LONG_OPT_PLUGINDIR:
+			slurm_conf.plugindir = xstrdup(optarg);
 			break;
 		case LONG_OPT_SYSTEMD:
 			under_systemd = true;
